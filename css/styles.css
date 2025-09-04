@@ -1,0 +1,227 @@
+/* Global reset */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800;900&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 62.5%; /* 1rem = 10px */
+  scroll-behavior: smooth;
+}
+body {
+  height: 100%;
+  font-size: 1.8rem;
+  font-weight: 400;
+  background: #000; /* czarne tło */
+  color: #fff;
+  font-family: "Roboto", "Arial", system-ui, -apple-system, "Segoe UI";
+  line-height: 1.6;
+}
+br {
+  line-height: 4;
+}
+.hero .copy h1 {
+  font-size: 10rem;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Top navigation */
+.top-nav {
+  position: sticky;
+  top: 0;
+  background: rgba(0, 0, 0, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  z-index: 20;
+}
+.top-nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+.logo a {
+  font-family: "Poppins", "Helvetica Neue", Helvetica, "Roboto", "Lato", Arial,
+    sans-serif;
+  font-size: 5rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+}
+.logo span {
+  color: #e11b23;
+  font-weight: 600;
+  margin-left: -1rem;
+}
+.logo img {
+  display: block;
+  width: 80px;
+  height: auto;
+}
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 18px;
+  opacity: 0.95;
+}
+.menu a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+/* Capitalize menu links */
+.menu a {
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+/* Menu link with inline icon */
+
+.menu-link .menu-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle; /* klucz! */
+}
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 480px;
+  gap: 28px;
+  align-items: center;
+  padding: 48px 0;
+  margin-bottom: 10rem;
+}
+.hero .copy h1 {
+  font-size: 10rem;
+  color: rgb(56, 55, 55); /* wypełnienie */
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.6); /* obramowanie */
+
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.hero .copy p {
+  color: #e6e6e6;
+  font-size: 1.8rem;
+}
+.hero img {
+  width: 100%;
+  height: auto;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 10px 20px 50px 1px rgba(255, 255, 255, 0.3);
+}
+
+section {
+  padding: 32px 0;
+  margin-bottom: 10rem;
+}
+h2 {
+  font-size: 5rem;
+  margin-bottom: 12px;
+}
+p {
+  color: #ddd;
+}
+
+#about p {
+  max-width: 100%;
+  margin-bottom: 5rem;
+  line-height: 1.7;
+  color: #bdbdbd;
+}
+#toc-content {
+  color: #bdbdbd;
+}
+.lets-talk {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  margin: auto;
+  text-align: center;
+}
+.btn {
+  display: inline-block;
+  margin-top: 12px;
+  background: #e11b23;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Collapsible about section */
+.collapsible {
+  margin-bottom: 5rem;
+}
+.collapsible h2 {
+  margin: 0;
+}
+.collapsible .toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 5rem; /* match h2 / Let's talk */
+  font-weight: 700;
+  cursor: pointer;
+  padding: 8px 0;
+}
+.collapsible .toggle:focus {
+  outline: 2px solid rgba(255, 0, 0, 0.25);
+}
+.collapsible .triangle {
+  width: 0;
+  height: 0;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-top: 26px solid #e11b23; /* larger red triangle pointing down */
+  transition: transform 0.2s ease;
+  display: inline-block;
+  margin-left: 12px;
+  transform-origin: center;
+  z-index: 2;
+  filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.45));
+}
+.collapsible .toggle[aria-expanded="true"] .triangle {
+  transform: rotate(-180deg);
+}
+.collapsible .content {
+  margin-top: 12px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.28s ease;
+}
+.collapsible .content[aria-hidden="false"] {
+  max-height: 2000px; /* large enough to reveal content */
+}
+
+/* Responsive */
+@media (max-width: 880px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .menu a {
+    margin-left: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-nav .container {
+    padding: 10px;
+  }
+  .hero .copy h1 {
+    font-size: 1.8rem;
+  }
+}
