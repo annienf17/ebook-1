@@ -222,6 +222,7 @@ p {
     padding: 10px;
   }
   .hero .copy h1 {
-    font-size: 1.8rem;
+    font-size: 5rem;
+    text-align: center;
   }
 }
