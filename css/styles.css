@@ -112,10 +112,16 @@ br {
   font-size: 1.8rem;
 }
 .hero img {
-  width: 100%;
+  width: 80%;
   height: auto;
   border: 2px solid rgba(255, 255, 255, 0.2);
   box-shadow: 10px 20px 50px 1px rgba(255, 255, 255, 0.3);
+}
+.copy {
+  text-align: center;
+}
+.copy a {
+  margin: 1rem;
 }
 
 section {
@@ -174,7 +180,7 @@ p {
   border: none;
   color: #fff;
   font-size: 5rem; /* match h2 / Let's talk */
-  font-weight: 700;
+  font-weight: 100;
   cursor: pointer;
   padding: 8px 0;
 }
@@ -225,4 +231,117 @@ p {
     font-size: 5rem;
     text-align: center;
   }
+}
+
+/* --- Reveal-on-hover effect (clean, scoped) --- */
+:root {
+  --lerp-0: 1; /* === sin(90deg) */
+  --lerp-1: calc(sin(50deg));
+  --lerp-2: calc(sin(45deg));
+  --lerp-3: calc(sin(35deg));
+  --lerp-4: calc(sin(25deg));
+  --lerp-5: calc(sin(15deg));
+}
+
+/* Accessibility helper - visually hidden but available to screen readers */
+.sr-only {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+  border: 0;
+  padding: 0;
+  margin: -1px;
+}
+
+/* Visual headline: letters as .digit following user's sample */
+.code-wrap {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+.code {
+  font-size: 5rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.code .digit {
+  padding: 5rem 0.5rem;
+  display: flex;
+  height: 100%;
+}
+.code .digit span {
+  display: inline-block;
+  scale: calc(var(--active, 0) + 0.5);
+  filter: blur(calc((1 - var(--active, 0)) * 1rem));
+  transition: scale calc(((1 - var(--active, 0)) + 0.2) * 1s),
+    filter calc(((1 - var(--active, 0)) + 0.2) * 1s);
+  color: #fff;
+}
+.code .digit.space span {
+  opacity: 0.92;
+  filter: blur(0.1rem);
+}
+
+.code .digit:is(:hover, :focus-visible) {
+  --active: var(--lerp-0);
+}
+.code .digit:is(:hover, :focus-visible) + .digit,
+.code .digit:has(+ .digit:is(:hover, :focus-visible)) {
+  --active: var(--lerp-1);
+}
+.code .digit:is(:hover, :focus-visible) + .digit + .digit,
+.code .digit:has(+ .digit + .digit:is(:hover, :focus-visible)) {
+  --active: var(--lerp-2);
+}
+.code .digit:is(:hover, :focus-visible) + .digit + .digit + .digit,
+.code .digit:has(+ .digit + .digit + .digit:is(:hover, :focus-visible)) {
+  --active: var(--lerp-3);
+}
+.code .digit:is(:hover, :focus-visible) + .digit + .digit + .digit + .digit,
+.code
+  .digit:has(+ .digit + .digit + .digit + .digit:is(:hover, :focus-visible)) {
+  --active: var(--lerp-4);
+}
+.code
+  .digit:is(:hover, :focus-visible)
+  + .digit
+  + .digit
+  + .digit
+  + .digit
+  + .digit,
+.code
+  .digit:has(
+    + .digit + .digit + .digit + .digit + .digit:is(:hover, :focus-visible)
+  ) {
+  --active: var(--lerp-5);
+}
+
+@media (max-width: 880px) {
+  .code {
+    font-size: 4.6rem;
+  }
+}
+@media (max-width: 480px) {
+  .code {
+    font-size: 3.4rem;
+  }
+}
+
+/* Purchase buttons: red with white text */
+.buy-buttons .btn.primary {
+  background: #e11b23;
+  color: #fff;
+  border: none;
+}
+.buy-buttons .btn {
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
