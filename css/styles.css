@@ -33,7 +33,7 @@ br {
   text-align: left;
 }
 .container {
-  max-width: 1100px;
+  max-width: 136rem;
   margin: 0 auto;
   padding: 0 16px;
 }
@@ -42,7 +42,7 @@ br {
 .top-nav {
   position: sticky;
   top: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.65);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   z-index: 20;
 }
@@ -51,6 +51,11 @@ br {
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 .logo a {
   font-family: "Poppins", "Helvetica Neue", Helvetica, "Roboto", "Lato", Arial,
@@ -65,11 +70,7 @@ br {
   font-weight: 600;
   margin-left: -1rem;
 }
-.logo img {
-  display: block;
-  width: 80px;
-  height: auto;
-}
+
 .menu a {
   color: #fff;
   text-decoration: none;
@@ -89,8 +90,8 @@ br {
 /* Menu link with inline icon */
 
 .menu-link .menu-icon {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   object-fit: contain;
   display: inline-block;
   vertical-align: middle; /* klucz! */
@@ -131,8 +132,7 @@ br {
 }
 
 section {
-  padding: 32px 0;
-  margin-bottom: 10rem;
+  padding: 3rem 0;
 }
 h2 {
   font-size: 5rem;
@@ -159,6 +159,9 @@ p {
   );
   margin: auto;
   text-align: center;
+}
+.lets-talk p {
+  margin-bottom: 3rem;
 }
 .btn {
   display: inline-block;
@@ -267,6 +270,7 @@ p {
   display: block;
   width: 100%;
   text-align: center;
+  margin: 10rem 0;
 }
 .code {
   font-size: 6.6rem;
@@ -339,6 +343,18 @@ p {
   --active: var(--lerp-5);
 }
 
+/* video */
+.video-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+}
+.video-wrap iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  display: block;
+}
 @media (max-width: 880px) {
   .code {
     font-size: 4.6rem;
@@ -360,4 +376,97 @@ p {
   background: rgba(255, 255, 255, 0.04);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* rwd caption */
+/* ZBIJA LINIE: brak pionowego gapu, line-height = 1 */
+.code {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* pierwszy parametr = odstęp PIONOWY, drugi = POZIOMY */
+  gap: 1em 0.6em; /* 0 między wierszami, 0.6em między słowami */
+  line-height: 1; /* ciasna wysokość linii */
+}
+
+/* Każde słowo w jednej linii (bez łamania w środku) */
+.code .word {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  align-items: center;
+  line-height: 1.5; /* dopięcie na wszelki wypadek */
+}
+
+/* LITERY: zmniejszamy pionowy padding (były 5rem!) */
+.code .word .digit {
+  /* było: padding: 5rem 0.5rem; */
+  padding-inline: 0.5rem;
+  padding-block: clamp(0.1rem, 0.5vw, 0.8rem); /* subtelny, rwd odstęp */
+  height: auto; /* upewnij się, że nic nie wymusza wysokości */
+}
+
+/* Jeśli chcesz jeszcze ciaśniej na małych ekranach */
+@media (max-width: 600px) {
+  .code {
+    gap: 0 0.4em;
+  }
+  .code .word .digit {
+    padding-block: clamp(0.05rem, 0.4vw, 0.5rem);
+  }
+  .hero {
+    margin: 0 auto;
+  }
+}
+
+/* słowo wyróżnione */
+.code .word.highlight .digit span {
+  color: #e11b23; /* czerwony */
+}
+
+/* Mobile centering */
+@media (max-width: 960px) {
+  .container,
+  .copy,
+  .hero,
+  .container,
+  section,
+  .lets-talk {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* wyśrodkowanie w poziomie */
+    justify-content: center; /* wyśrodkowanie w pionie (tam gdzie możliwe) */
+    text-align: center; /* teksty też centralnie */
+  }
+  #about-content,
+  #toc-content {
+    text-align: left;
+  }
+  .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* odstępy między linkami w menu */
+    align-items: center;
+    padding-bottom: 3rem;
+  }
+
+  .hero img {
+    max-width: 100%;
+    max-width: 320px; /* żeby okładka nie była za duża */
+  }
+
+  .btn {
+    width: auto; /* przyciski o naturalnej szerokości */
+    min-width: 300px; /* ale niech będą czytelne na dotyk */
+    margin: 0.5rem 0;
+  }
+
+  .video-wrap {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  h2 {
+    text-align: center;
+  }
 }
