@@ -64,6 +64,7 @@ br {
   font-weight: 600;
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
+  margin-bottom: 2rem;
 }
 .logo span {
   color: #e11b23;
@@ -445,14 +446,14 @@ p {
   .menu {
     display: flex;
     flex-direction: column;
-    gap: 2rem; /* odstępy między linkami w menu */
+    gap: 1.1rem; /* odstępy między linkami w menu */
     align-items: center;
     padding-bottom: 3rem;
   }
 
   .hero img {
     max-width: 100%;
-    max-width: 320px; /* żeby okładka nie była za duża */
+    max-width: 400px;
   }
 
   .btn {
