@@ -5,6 +5,13 @@
   margin: 0;
   padding: 0;
 }
+/* --- Ustawienia efektu pisania --- */
+:root {
+  --type-duration: 0.55s; /* czas animacji jednej litery */
+  --type-stagger: 0.06s; /* odstęp między literami */
+  --type-ease: cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
 html {
   font-size: 62.5%; /* 1rem = 10px */
   scroll-behavior: smooth;
@@ -71,21 +78,46 @@ br {
   font-weight: 600;
   margin-left: -1rem;
 }
-
-.menu a {
-  color: #fff;
+/* menu */
+.menu ul {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+.menu ul li {
+  padding: 0 2rem;
+  list-style: none;
+}
+.menu ul a {
+  --fill-color: rgb(225, 27, 35);
+  position: relative;
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 500;
   text-decoration: none;
-  margin-left: 18px;
-  opacity: 0.95;
-}
-.menu a:hover {
-  opacity: 1;
-  text-decoration: underline;
-}
-/* Capitalize menu links */
-.menu a {
+  text-transform: uppercase;
+  background: linear-gradient(
+    90deg,
+    var(--fill-color) 0%,
+    var(--fill-color) 100%
+  );
+  background-size: 0;
+  background-position: left;
+  background-repeat: no-repeat;
+  color: rgb(255, 255, 255);
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: 0.5s linear;
   text-transform: uppercase;
   letter-spacing: 0.6px;
+}
+.menu ul a:hover {
+  background-size: 100%;
+  color: transparent;
+  text-decoration: none;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Menu link with inline icon */
@@ -96,6 +128,31 @@ br {
   object-fit: contain;
   display: inline-block;
   vertical-align: middle; /* klucz! */
+}
+.menu-link .menu-icon {
+  transition: transform 0.2s ease;
+}
+
+.menu-link:hover .menu-icon {
+  animation: shake 0.4s ease; /* czas i styl trzęsienia */
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(6deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 /* Hero */
@@ -228,7 +285,7 @@ p {
     grid-template-columns: 1fr;
   }
   .menu a {
-    margin-left: 12px;
+    margin-top: 2rem;
   }
 }
 
@@ -242,14 +299,11 @@ p {
   }
 }
 
-/* --- Reveal-on-hover effect (clean, scoped) --- */
+/* --- Ustawienia efektu pisania --- */
 :root {
-  --lerp-0: 1; /* === sin(90deg) */
-  --lerp-1: calc(sin(50deg));
-  --lerp-2: calc(sin(45deg));
-  --lerp-3: calc(sin(35deg));
-  --lerp-4: calc(sin(25deg));
-  --lerp-5: calc(sin(15deg));
+  --type-duration: 0.55s; /* czas animacji jednej litery */
+  --type-stagger: 0.06s; /* odstęp między literami */
+  --type-ease: cubic-bezier(0.2, 0.9, 0.2, 1);
 }
 
 /* Accessibility helper - visually hidden but available to screen readers */
@@ -265,7 +319,6 @@ p {
   margin: -1px;
 }
 
-/* Visual headline: letters as .digit following user's sample */
 .code-wrap {
   display: block;
   width: 100%;
@@ -281,66 +334,67 @@ p {
   padding: 0;
   margin: 0;
 }
-.code .digit {
-  padding: 5rem 0.5rem;
-  display: flex;
-  height: 100%;
-}
+
+/* stan wyjściowy każdej litery: ukryta i lekko przesunięta */
 .code .digit span {
-  display: inline-block;
-  scale: calc(var(--active, 0) + 0.5);
-  filter: blur(calc((1 - var(--active, 0)) * 1rem));
-  transition: scale calc(((1 - var(--active, 0)) + 0.2) * 1s),
-    filter calc(((1 - var(--active, 0)) + 0.2) * 1s);
-  color: #fff;
-}
-.code .digit.space span {
-  opacity: 0.92;
-  filter: blur(0.1rem);
+  opacity: 0;
+  transform: translateY(0.5em);
+  filter: blur(6px);
 }
 
-/* Highlight the word "Iluzji" (letters at list positions 8–13) */
+/* aktywny tryb "pisania" – animacja dla każdej litery z opóźnieniem */
+.code.typing .digit span {
+  animation: typeIn var(--type-duration) var(--type-ease) forwards;
+  animation-delay: var(--delay, 0s); /* ustawimy w JS per-literkowo */
+}
+
+/* delikatny „kursor” mrugający po ostatniej literze (opcjonalnie) */
+.code.typing::after {
+  content: "V";
+  display: inline-block;
+  margin-left: 0.2rem;
+  animation: caret 1s steps(2, end) infinite;
+  color: rgb(225, 27, 35);
+}
+
+/* akcent słowa "Iluzji" – zostawiamy Twój kolor */
 .code .digit:nth-child(8) span,
 .code .digit:nth-child(9) span,
 .code .digit:nth-child(10) span,
 .code .digit:nth-child(11) span,
 .code .digit:nth-child(12) span,
 .code .digit:nth-child(13) span {
-  color: #e11b23; /* red */
+  color: rgb(225, 27, 35);
 }
 
-.code .digit:is(:hover, :focus-visible) {
-  --active: var(--lerp-0);
+/* Kluczowe klatki */
+@keyframes typeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(0.5em);
+    filter: blur(6px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
-.code .digit:is(:hover, :focus-visible) + .digit,
-.code .digit:has(+ .digit:is(:hover, :focus-visible)) {
-  --active: var(--lerp-1);
-}
-.code .digit:is(:hover, :focus-visible) + .digit + .digit,
-.code .digit:has(+ .digit + .digit:is(:hover, :focus-visible)) {
-  --active: var(--lerp-2);
-}
-.code .digit:is(:hover, :focus-visible) + .digit + .digit + .digit,
-.code .digit:has(+ .digit + .digit + .digit:is(:hover, :focus-visible)) {
-  --active: var(--lerp-3);
-}
-.code .digit:is(:hover, :focus-visible) + .digit + .digit + .digit + .digit,
-.code
-  .digit:has(+ .digit + .digit + .digit + .digit:is(:hover, :focus-visible)) {
-  --active: var(--lerp-4);
-}
-.code
-  .digit:is(:hover, :focus-visible)
-  + .digit
-  + .digit
-  + .digit
-  + .digit
-  + .digit,
-.code
-  .digit:has(
-    + .digit + .digit + .digit + .digit + .digit:is(:hover, :focus-visible)
-  ) {
-  --active: var(--lerp-5);
+@keyframes caret {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* video */
@@ -385,7 +439,7 @@ p {
   flex-wrap: wrap;
   justify-content: center;
   /* pierwszy parametr = odstęp PIONOWY, drugi = POZIOMY */
-  gap: 1em 0.6em; /* 0 między wierszami, 0.6em między słowami */
+  gap: 0.3em 0.1em; /* 0 między wierszami, 0.6em między słowami */
   line-height: 1; /* ciasna wysokość linii */
 }
 
@@ -458,7 +512,7 @@ p {
   .btn {
     width: auto; /* przyciski o naturalnej szerokości */
     min-width: 300px; /* ale niech będą czytelne na dotyk */
-    margin: 0.5rem 0;
+    margin: rem 0;
   }
 
   .video-wrap {
