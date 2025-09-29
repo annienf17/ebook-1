@@ -499,7 +499,7 @@ p {
   .menu {
     display: flex;
     flex-direction: column;
-    gap: 1.1rem; /* odstępy między linkami w menu */
+    gap: 1rem; /* odstępy między linkami w menu */
     align-items: center;
     padding-bottom: 3rem;
   }
