@@ -163,6 +163,8 @@ br {
   align-items: center;
   padding: 48px 0;
   margin-bottom: 10rem;
+  /* Dodaj perspective do kontenera */
+  perspective: 1200px;
 }
 .hero .copy h1 {
   font-size: 10rem;
@@ -179,8 +181,130 @@ br {
 .hero img {
   width: 80%;
   height: auto;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 10px 20px 50px 1px rgba(255, 255, 255, 0.3);
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-25deg) rotateX(5deg);
+  transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 4px;
+  box-shadow: 
+    /* Białe morficzne cienie na czarnym tle */ 0 25px 50px
+      rgba(255, 255, 255, 0.1),
+    15px 0 30px rgba(255, 255, 255, 0.08), 0 35px 80px rgba(255, 255, 255, 0.05);
+}
+
+/* Grubość książki - prawy bok (spine) */
+.hero img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    #8b4513 0%,
+    /* ciemny brąz */ #a0522d 15%,
+    /* brąz */ #cd853f 30%,
+    /* piaskowy brąz */ #deb887 45%,
+    /* beżowy */ #f5deb3 60%,
+    /* wheat */ #fff8dc 75%,
+    /* cornsilk */ #fffaf0 85%,
+    /* floral white */ #ffffff 100% /* biały */
+  );
+  transform: rotateY(90deg);
+  transform-origin: left center;
+  z-index: -1;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 
+    /* Białe morficzne cienie imitujące kartki */ inset 8px 0 0
+      rgba(255, 255, 255, 0.3),
+    inset 12px 0 0 rgba(255, 255, 255, 0.25),
+    inset 16px 0 0 rgba(255, 255, 255, 0.2),
+    inset 20px 0 0 rgba(255, 255, 255, 0.15),
+    inset 24px 0 0 rgba(255, 255, 255, 0.1),
+    inset 28px 0 0 rgba(255, 255, 255, 0.05),
+    /* Biały zewnętrzny cień grubości */ 2px 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Grubość książki - dolny bok */
+.hero img::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(
+    to bottom,
+    #8b4513 0%,
+    /* ciemny brąz */ #a0522d 20%,
+    /* brąz */ #654321 40%,
+    /* dark brown */ #4a4a4a 60%,
+    /* dark gray */ #2f2f2f 80%,
+    /* darker gray */ #1a1a1a 100% /* bardzo ciemny */
+  );
+  transform: rotateX(-90deg);
+  transform-origin: top center;
+  z-index: -2;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 
+    /* Białe morficzne linie imitujące kartki od dołu */ inset 0
+      8px 0 rgba(255, 255, 255, 0.2),
+    inset 0 12px 0 rgba(255, 255, 255, 0.15),
+    inset 0 16px 0 rgba(255, 255, 255, 0.1),
+    inset 0 20px 0 rgba(255, 255, 255, 0.05),
+    /* Biały cień pod książką */ 0 5px 20px rgba(255, 255, 255, 0.15);
+}
+
+.hero img:hover {
+  transform: rotateY(-15deg) rotateX(8deg) scale(1.05);
+  box-shadow: 
+    /* Zwiększone białe morficzne cienie przy hover */ 50px 5px
+      10px rgba(255, 255, 255, 0.15),
+    20px 0 40px rgba(255, 255, 255, 0.12),
+    0 50px 120px rgba(255, 255, 255, 0.08);
+}
+
+.hero img:hover::before {
+  background: linear-gradient(
+    to right,
+    #a0522d 0%,
+    /* jaśniejszy brąz */ #cd853f 15%,
+    /* piaskowy brąz */ #deb887 30%,
+    /* beżowy */ #f5deb3 45%,
+    /* wheat */ #fff8dc 60%,
+    /* cornsilk */ #fffaf0 75%,
+    /* floral white */ #ffffff 85%,
+    /* biały */ #ffffff 100% /* pełny biały */
+  );
+  box-shadow: 
+    /* Wyraźniejsze białe morficzne kartki przy hover */ inset 8px
+      0 0 rgba(255, 255, 255, 0.4),
+    inset 12px 0 0 rgba(255, 255, 255, 0.35),
+    inset 16px 0 0 rgba(255, 255, 255, 0.3),
+    inset 20px 0 0 rgba(255, 255, 255, 0.25),
+    inset 24px 0 0 rgba(255, 255, 255, 0.2),
+    inset 28px 0 0 rgba(255, 255, 255, 0.15),
+    /* Mocniejszy biały zewnętrzny cień */ 3px 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.hero img:hover::after {
+  background: linear-gradient(
+    to bottom,
+    #a0522d 0%,
+    /* jaśniejszy brąz */ #8b4513 20%,
+    /* brąz */ #654321 40%,
+    /* dark brown */ #4a4a4a 60%,
+    /* dark gray */ #2f2f2f 80%,
+    /* darker gray */ #1a1a1a 100% /* bardzo ciemny */
+  );
+  box-shadow: 
+    /* Wyraźniejsze białe morficzne linie kartek przy hover */ inset
+      0 8px 0 rgba(255, 255, 255, 0.25),
+    inset 0 12px 0 rgba(255, 255, 255, 0.2),
+    inset 0 16px 0 rgba(255, 255, 255, 0.15),
+    inset 0 20px 0 rgba(255, 255, 255, 0.1),
+    /* Mocniejszy biały cień pod książką */ 0 8px 30px rgba(255, 255, 255, 0.2);
 }
 .copy {
   text-align: center;
@@ -507,6 +631,8 @@ p {
   .hero img {
     max-width: 100%;
     max-width: 400px;
+    /* Zachowaj efekt 3D na mobile, ale mniej agresywny */
+    transform: rotateY(-20deg) rotateX(3deg) !important;
   }
 
   .btn {
