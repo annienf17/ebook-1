@@ -20,8 +20,8 @@ body {
   height: 100%;
   font-size: 1.8rem;
   font-weight: 400;
-  background: #000; /* czarne tło */
-  color: #fff;
+  background: #010101; /* czarne tło */
+  color: #ccc;
   font-family: "Roboto", "Arial", system-ui, -apple-system, "Segoe UI";
   line-height: 1.6;
 }
@@ -106,7 +106,7 @@ br {
   background-size: 0;
   background-position: left;
   background-repeat: no-repeat;
-  color: rgb(255, 255, 255);
+  color: #ccc;
   -webkit-background-clip: text;
   background-clip: text;
   transition: 0.5s linear;
@@ -408,10 +408,10 @@ p {
   max-width: 100%;
   margin-bottom: 1rem;
   line-height: 1.7;
-  color: #bdbdbd;
+  color: #ccc;
 }
 #toc-content {
-  color: #bdbdbd;
+  color: #ccc;
 }
 .lets-talk {
   background: linear-gradient(
@@ -441,7 +441,7 @@ p {
   margin-bottom: 5rem;
 }
 .collapsible h2 {
-  color: rgba(255, 255, 255, 0.7);
+  color: #ccc;
   margin: 0;
   transition: ease-in-out color 0.3s;
 }
@@ -496,7 +496,7 @@ p {
 }
 
 .about-text p {
-  color: #bdbdbd;
+  color: #cccccc;
   margin-bottom: 2rem;
   font-size: 1.8rem;
 }
