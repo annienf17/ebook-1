@@ -183,86 +183,167 @@ br {
   height: auto;
   position: relative;
   transform-style: preserve-3d;
-  transform: rotateY(-25deg) rotateX(5deg);
-  transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border-radius: 4px;
+  transform: rotateY(-30deg) rotateX(5deg);
+  transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 0;
+  cursor: pointer;
   box-shadow: 
-    /* Białe morficzne cienie na czarnym tle */ 0 25px 50px
-      rgba(255, 255, 255, 0.1),
-    15px 0 30px rgba(255, 255, 255, 0.08), 0 35px 80px rgba(255, 255, 255, 0.05);
+    /* Główny cień książki */ 20px 30px 60px
+      rgba(255, 255, 255, 0.08),
+    /* Dodatkowy cień dla głębi */ 30px 40px 100px rgba(255, 255, 255, 0.04);
 }
 
-/* Grubość książki - prawy bok (spine) */
+/* Prawdziwa grubość książki - bok z kartkami */
 .hero img::before {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
-  width: 50px;
+  width: 60px;
   height: 100%;
-  background: linear-gradient(
-    to right,
-    #8b4513 0%,
-    /* ciemny brąz */ #a0522d 15%,
-    /* brąz */ #cd853f 30%,
-    /* piaskowy brąz */ #deb887 45%,
-    /* beżowy */ #f5deb3 60%,
-    /* wheat */ #fff8dc 75%,
-    /* cornsilk */ #fffaf0 85%,
-    /* floral white */ #ffffff 100% /* biały */
-  );
+  background: 
+    /* Wiele warstw kartek */ linear-gradient(
+      0deg,
+      transparent 0%,
+      transparent 2%,
+      #d4a574 2%,
+      #d4a574 4%,
+      transparent 4%
+    ),
+    linear-gradient(
+      0deg,
+      transparent 4%,
+      transparent 6%,
+      #d2a372 6%,
+      #d2a372 8%,
+      transparent 8%
+    ),
+    linear-gradient(
+      0deg,
+      transparent 8%,
+      transparent 10%,
+      #d0a170 10%,
+      #d0a170 12%,
+      transparent 12%
+    ),
+    linear-gradient(
+      0deg,
+      transparent 12%,
+      transparent 14%,
+      #ce9f6e 14%,
+      #ce9f6e 16%,
+      transparent 16%
+    ),
+    linear-gradient(
+      0deg,
+      transparent 16%,
+      transparent 18%,
+      #cc9d6c 18%,
+      #cc9d6c 20%,
+      transparent 20%
+    ),
+    /* Główny gradient */
+      linear-gradient(
+        to right,
+        #8b4513 0%,
+        #a0522d 15%,
+        #cd853f 35%,
+        #deb887 55%,
+        #f5deb3 75%,
+        #fff8dc 90%,
+        #ffffff 100%
+      );
   transform: rotateY(90deg);
   transform-origin: left center;
   z-index: -1;
-  border-radius: 0 4px 4px 0;
   box-shadow: 
-    /* Białe morficzne cienie imitujące kartki */ inset 8px 0 0
-      rgba(255, 255, 255, 0.3),
-    inset 12px 0 0 rgba(255, 255, 255, 0.25),
-    inset 16px 0 0 rgba(255, 255, 255, 0.2),
-    inset 20px 0 0 rgba(255, 255, 255, 0.15),
-    inset 24px 0 0 rgba(255, 255, 255, 0.1),
-    inset 28px 0 0 rgba(255, 255, 255, 0.05),
-    /* Biały zewnętrzny cień grubości */ 2px 0 10px rgba(255, 255, 255, 0.2);
+    /* Naturalne cienie kartek */ inset 5px 0 0
+      rgba(139, 69, 19, 0.6),
+    inset 10px 0 0 rgba(160, 82, 45, 0.5),
+    inset 15px 0 0 rgba(205, 133, 63, 0.4),
+    inset 20px 0 0 rgba(222, 184, 135, 0.3),
+    inset 25px 0 0 rgba(245, 222, 179, 0.2),
+    inset 30px 0 0 rgba(255, 248, 220, 0.1),
+    /* Zewnętrzny cień */ 3px 0 15px rgba(255, 255, 255, 0.1);
 }
 
-/* Grubość książki - dolny bok */
+/* Dolna grubość książki - z realistycznymi kartkami */
 .hero img::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 50px;
-  background: linear-gradient(
-    to bottom,
-    #8b4513 0%,
-    /* ciemny brąz */ #a0522d 20%,
-    /* brąz */ #654321 40%,
-    /* dark brown */ #4a4a4a 60%,
-    /* dark gray */ #2f2f2f 80%,
-    /* darker gray */ #1a1a1a 100% /* bardzo ciemny */
-  );
+  height: 60px;
+  background: 
+    /* Wiele warstw kartek poziomych */ linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 2%,
+      #a0522d 2%,
+      #a0522d 4%,
+      transparent 4%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 4%,
+      transparent 6%,
+      #9e502b 6%,
+      #9e502b 8%,
+      transparent 8%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 8%,
+      transparent 10%,
+      #9c4e29 10%,
+      #9c4e29 12%,
+      transparent 12%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 12%,
+      transparent 14%,
+      #9a4c27 14%,
+      #9a4c27 16%,
+      transparent 16%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 16%,
+      transparent 18%,
+      #984a25 18%,
+      #984a25 20%,
+      transparent 20%
+    ),
+    /* Główny gradient */
+      linear-gradient(
+        to bottom,
+        #a0522d 0%,
+        #8b4513 20%,
+        #654321 45%,
+        #4a4a4a 65%,
+        #2f2f2f 85%,
+        #1a1a1a 100%
+      );
   transform: rotateX(-90deg);
   transform-origin: top center;
   z-index: -2;
-  border-radius: 0 0 4px 4px;
   box-shadow: 
-    /* Białe morficzne linie imitujące kartki od dołu */ inset 0
-      8px 0 rgba(255, 255, 255, 0.2),
-    inset 0 12px 0 rgba(255, 255, 255, 0.15),
-    inset 0 16px 0 rgba(255, 255, 255, 0.1),
-    inset 0 20px 0 rgba(255, 255, 255, 0.05),
-    /* Biały cień pod książką */ 0 5px 20px rgba(255, 255, 255, 0.15);
+    /* Realistyczne warstwy kartek */ inset 0 5px 0
+      rgba(160, 82, 45, 0.5),
+    inset 0 10px 0 rgba(139, 69, 19, 0.4), inset 0 15px 0 rgba(101, 67, 33, 0.3),
+    inset 0 20px 0 rgba(74, 74, 74, 0.2), inset 0 25px 0 rgba(47, 47, 47, 0.1),
+    /* Zewnętrzny cień */ 0 8px 20px rgba(255, 255, 255, 0.08);
 }
 
 .hero img:hover {
-  transform: rotateY(-15deg) rotateX(8deg) scale(1.05);
+  transform: rotateY(-5deg) rotateX(10deg) scale(1.08);
   box-shadow: 
-    /* Zwiększone białe morficzne cienie przy hover */ 50px 5px
-      10px rgba(255, 255, 255, 0.15),
-    20px 0 40px rgba(255, 255, 255, 0.12),
-    0 50px 120px rgba(255, 255, 255, 0.08);
+    /* Drammatyczne cienie przy hover jak w załączniku */ 40px
+      50px 80px rgba(255, 255, 255, 0.12),
+    60px 20px 60px rgba(255, 255, 255, 0.08),
+    20px 80px 150px rgba(255, 255, 255, 0.06);
 }
 
 .hero img:hover::before {
@@ -325,7 +406,7 @@ p {
 
 #about p {
   max-width: 100%;
-  margin-bottom: 5rem;
+  margin-bottom: 1rem;
   line-height: 1.7;
   color: #bdbdbd;
 }
@@ -360,7 +441,12 @@ p {
   margin-bottom: 5rem;
 }
 .collapsible h2 {
+  color: rgba(255, 255, 255, 0.7);
   margin: 0;
+  transition: ease-in-out color 0.3s;
+}
+.collapsible h2:hover {
+  color: rgba(255, 255, 255, 1);
 }
 .collapsible .toggle {
   display: flex;
@@ -375,7 +461,7 @@ p {
   padding: 8px 0;
 }
 .collapsible .toggle:focus {
-  outline: 2px solid rgba(255, 0, 0, 0.25);
+  outline: none;
 }
 .collapsible .triangle {
   width: 0;
@@ -401,6 +487,80 @@ p {
 }
 .collapsible .content[aria-hidden="false"] {
   max-height: 2000px; /* large enough to reveal content */
+}
+
+/* Style dla treści "Dlaczego powstała ta książka" */
+.about-text {
+  padding: 2rem 0;
+  line-height: 1.8;
+}
+
+.about-text p {
+  color: #bdbdbd;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.about-text ul {
+  color: #bdbdbd;
+  margin: 2rem 0;
+  padding-left: 2rem;
+}
+
+.about-text li {
+  margin-bottom: 1rem;
+  font-size: 1.7rem;
+  position: relative;
+}
+
+.about-text li::marker {
+  color: #e11b23;
+}
+
+.about-text li:before {
+  content: "✓";
+  color: #e11b23;
+  font-weight: bold;
+  position: absolute;
+  left: -2rem;
+}
+
+.about-text ul {
+  list-style: none;
+}
+
+/* Style dla spisu treści */
+.toc-text {
+  padding: 2rem 0;
+}
+
+.toc-chapter {
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 4px solid #e11b23;
+  border-radius: 0 8px 8px 0;
+  transition: all 0.3s ease;
+}
+
+.toc-chapter:hover {
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateX(5px);
+}
+
+.toc-chapter h3 {
+  color: #e11b23;
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  line-height: 1.3;
+}
+
+.toc-chapter p {
+  color: #bdbdbd;
+  font-size: 1.6rem;
+  line-height: 1.2;
+  margin: 0;
 }
 
 /* Responsive */
@@ -631,8 +791,40 @@ p {
   .hero img {
     max-width: 100%;
     max-width: 400px;
-    /* Zachowaj efekt 3D na mobile, ale mniej agresywny */
+    /* Zachowaj efekt 3D na mobile z animacją */
     transform: rotateY(-20deg) rotateX(3deg) !important;
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  }
+
+  /* Animacja na dotyk dla mobile */
+  .hero img:active {
+    transform: rotateY(-10deg) rotateX(6deg) scale(1.03) !important;
+    box-shadow: 0 30px 60px rgba(255, 255, 255, 0.12),
+      15px 0 35px rgba(255, 255, 255, 0.1),
+      0 40px 100px rgba(255, 255, 255, 0.06) !important;
+  }
+
+  /* Animacja pseudo-elementów na mobile */
+  .hero img:active::before {
+    box-shadow: inset 8px 0 0 rgba(255, 255, 255, 0.35),
+      inset 12px 0 0 rgba(255, 255, 255, 0.3),
+      inset 16px 0 0 rgba(255, 255, 255, 0.25),
+      inset 20px 0 0 rgba(255, 255, 255, 0.2),
+      3px 0 12px rgba(255, 255, 255, 0.25) !important;
+  }
+
+  .hero img:active::after {
+    box-shadow: inset 0 8px 0 rgba(255, 255, 255, 0.22),
+      inset 0 12px 0 rgba(255, 255, 255, 0.18),
+      inset 0 16px 0 rgba(255, 255, 255, 0.12),
+      0 6px 25px rgba(255, 255, 255, 0.18) !important;
+  }
+
+  /* Dodatkowa animacja na focus dla lepszej dostępności */
+  .hero img:focus {
+    transform: rotateY(-15deg) rotateX(5deg) scale(1.02) !important;
+    outline: 2px solid rgba(255, 255, 255, 0.3);
+    outline-offset: 4px;
   }
 
   .btn {
